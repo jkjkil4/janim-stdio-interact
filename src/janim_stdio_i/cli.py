@@ -14,10 +14,10 @@ from janim.gui.application import Application
 from janim.utils.file_ops import STDIN_FILENAME
 from janim.utils.reload import reset_reloads_state
 
-from janim_stdio_interact.listener import StdinListener
-from janim_stdio_interact.locale.i18n import get_local_strings
-from janim_stdio_interact.logger import log
-from janim_stdio_interact.viewer import StdioAnimViewer
+from janim_stdio_i.listener import StdinListener
+from janim_stdio_i.locale.i18n import get_local_strings
+from janim_stdio_i.logger import log
+from janim_stdio_i.viewer import StdioAnimViewer
 
 _ = get_local_strings('cli')
 

@@ -2,7 +2,7 @@ import gettext
 import locale
 import os
 
-from janim_stdio_interact.locale import get_package_dir
+from janim_stdio_i.locale import get_package_dir
 
 
 lang: str | None = None

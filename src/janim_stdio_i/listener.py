@@ -3,8 +3,8 @@ import sys
 
 from PySide6.QtCore import QThread, Signal
 
-from janim_stdio_interact.locale.i18n import get_local_strings
-from janim_stdio_interact.logger import log
+from janim_stdio_i.locale.i18n import get_local_strings
+from janim_stdio_i.logger import log
 
 _ = get_local_strings('listener')
 

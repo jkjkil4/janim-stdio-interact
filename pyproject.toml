@@ -14,5 +14,22 @@ dependencies = [
     "janim[gui]",
 ]
 
+[tool.flit.module]
+name = "janim_stdio_i"
+
+[tool.flit.sdist]
+exclude = [
+    ".gitignore",
+    "uv.lock",
+    "src/janim_stdio_i/locale/source",
+    "src/janim_stdio_i/locale/compile.py",
+    "src/janim_stdio_i/locale/gettext.py",
+    "src/janim_stdio_i/locale/intl.py",
+    "src/janim_stdio_i/locale/*/LC_MESSAGES/*.po"
+]
+
+[project.urls]
+Source = "https://github.com/jkjkil4/janim-stdio-interact"
+
 [project.scripts]
-janim-stdio-i = "janim_stdio_interact.__main__:main"
+janim-stdio-i = "janim_stdio_i.__main__:main"

@@ -1,7 +1,7 @@
 
 from argparse import ArgumentParser, Namespace
 
-from janim_stdio_interact.locale.i18n import get_local_strings, set_lang
+from janim_stdio_i.locale.i18n import get_local_strings, set_lang
 
 _ = get_local_strings('__main__')
 
@@ -40,7 +40,7 @@ def main() -> None:
     args = parser.parse_args()
 
     if args.version:
-        from janim_stdio_interact import __version__
+        from janim_stdio_i import __version__
         print(f'janim-stdio-interact {__version__}')
 
     if args.func is None:
@@ -59,5 +59,5 @@ def host_parser(parser: ArgumentParser) -> None:
 
 
 def host(args: Namespace) -> None:
-    from janim_stdio_interact.cli import host
+    from janim_stdio_i.cli import host
     host(args)

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-03 15:35+0800\n"
+"POT-Creation-Date: 2025-12-03 15:42+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,20 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src\janim_stdio_interact\listener.py:32
+#: src\janim_stdio_i\cli.py:26
+msgid "Hosting JAnim GUI and interacting via stdio ..."
+msgstr ""
+
+#: src\janim_stdio_i\cli.py:53
+msgid "Main process exited"
+msgstr ""
+
+#: src\janim_stdio_i\cli.py:74
 #, python-format
-msgid "Failed to parse JSON from stdin: %r"
+msgid "Unrecognized message type: \"%s\""
+msgstr ""
+
+#: src\janim_stdio_i\cli.py:77
+#, python-format
+msgid "Invalid message: %r"
 msgstr ""

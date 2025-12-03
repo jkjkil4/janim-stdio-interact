@@ -17,19 +17,19 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src\janim_stdio_interact\__main__.py:20
+#: src\janim_stdio_i\__main__.py:20
 msgid ""
 "A utility library for interacting with JAnim GUI via standard input/output"
 msgstr ""
 
-#: src\janim_stdio_interact\__main__.py:25
+#: src\janim_stdio_i\__main__.py:25
 msgid "Language code, e.g., en, zh_CN"
 msgstr ""
 
-#: src\janim_stdio_interact\__main__.py:34
+#: src\janim_stdio_i\__main__.py:34
 msgid "Set the logging level (default: INFO)"
 msgstr ""
 
-#: src\janim_stdio_interact\__main__.py:38
+#: src\janim_stdio_i\__main__.py:38
 msgid "Host JAnim GUI and interact via stdio"
 msgstr ""

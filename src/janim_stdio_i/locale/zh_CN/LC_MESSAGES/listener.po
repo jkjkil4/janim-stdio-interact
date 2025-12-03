@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.8\n"
 
-#: src\janim_stdio_interact\listener.py:32
+#: src\janim_stdio_i\listener.py:32
 #, python-format
 msgid "Failed to parse JSON from stdin: %r"
 msgstr "将 stdin 解析为 JSON 失败: %r"

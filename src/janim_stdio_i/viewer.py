@@ -8,7 +8,7 @@ from janim.anims.timeline import BuiltTimeline
 from janim.gui.anim_viewer import AnimViewer
 
 if TYPE_CHECKING:
-    from janim_stdio_interact.cli import AnimViewerManager
+    from janim_stdio_i.cli import AnimViewerManager
 
 
 class StdioAnimViewer(AnimViewer):

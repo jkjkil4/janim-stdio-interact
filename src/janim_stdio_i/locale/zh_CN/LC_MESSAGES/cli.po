@@ -18,20 +18,20 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.8\n"
 
-#: src\janim_stdio_interact\cli.py:26
+#: src\janim_stdio_i\cli.py:26
 msgid "Hosting JAnim GUI and interacting via stdio ..."
 msgstr "托管 JAnim GUI 并与 stdio 交互中 ..."
 
-#: src\janim_stdio_interact\cli.py:53
+#: src\janim_stdio_i\cli.py:53
 msgid "Main process exited"
 msgstr "主进程已退出"
 
-#: src\janim_stdio_interact\cli.py:74
+#: src\janim_stdio_i\cli.py:74
 #, python-format
 msgid "Unrecognized message type: \"%s\""
 msgstr "无法识别的消息类型：\"%s\""
 
-#: src\janim_stdio_interact\cli.py:77
+#: src\janim_stdio_i\cli.py:77
 #, python-format
 msgid "Invalid message: %r"
 msgstr "无效的消息：%r"

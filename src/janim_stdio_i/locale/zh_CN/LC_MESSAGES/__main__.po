@@ -18,18 +18,18 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.8\n"
 
-#: src\janim_stdio_interact\__main__.py:20
+#: src\janim_stdio_i\__main__.py:20
 msgid "A utility library for interacting with JAnim GUI via standard input/output"
 msgstr "一个通过标准输入/输出与 JAnim GUI 交互的工具库"
 
-#: src\janim_stdio_interact\__main__.py:25
+#: src\janim_stdio_i\__main__.py:25
 msgid "Language code, e.g., en, zh_CN"
 msgstr "语言代码，例如 en、zh_CN"
 
-#: src\janim_stdio_interact\__main__.py:34
+#: src\janim_stdio_i\__main__.py:34
 msgid "Set the logging level (default: INFO)"
 msgstr "设置日志级别（默认：INFO）"
 
-#: src\janim_stdio_interact\__main__.py:38
+#: src\janim_stdio_i\__main__.py:38
 msgid "Host JAnim GUI and interact via stdio"
 msgstr "托管 JAnim GUI 并通过 stdio 交互"
