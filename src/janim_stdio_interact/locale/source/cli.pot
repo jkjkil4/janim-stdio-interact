@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-03 15:28+0800\n"
+"POT-Creation-Date: 2025-12-03 15:42+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,4 +23,14 @@ msgstr ""
 
 #: src\janim_stdio_interact\cli.py:53
 msgid "Main process exited"
+msgstr ""
+
+#: src\janim_stdio_interact\cli.py:74
+#, python-format
+msgid "Unrecognized message type: \"%s\""
+msgstr ""
+
+#: src\janim_stdio_interact\cli.py:77
+#, python-format
+msgid "Invalid message: %r"
 msgstr ""

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-03 13:03+0800\n"
-"PO-Revision-Date: 2025-12-03 15:27+0800\n"
+"POT-Creation-Date: 2025-12-03 15:42+0800\n"
+"PO-Revision-Date: 2025-12-03 15:43+0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: zh_CN\n"
@@ -25,3 +25,13 @@ msgstr "托管 JAnim GUI 并与 stdio 交互中 ..."
 #: src\janim_stdio_interact\cli.py:53
 msgid "Main process exited"
 msgstr "主进程已退出"
+
+#: src\janim_stdio_interact\cli.py:74
+#, python-format
+msgid "Unrecognized message type: \"%s\""
+msgstr "无法识别的消息类型：\"%s\""
+
+#: src\janim_stdio_interact\cli.py:77
+#, python-format
+msgid "Invalid message: %r"
+msgstr "无效的消息：%r"

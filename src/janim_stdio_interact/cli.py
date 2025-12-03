@@ -60,14 +60,21 @@ class AnimViewerManager:
     def handle_message(self, msg: dict) -> None:
         log.debug('Received message from stdin: %r', msg)
 
-        type = msg['type']
+        try:
+            type = msg['type']
 
-        match type:
-            case 'execute':
-                self.execute(msg['key'], msg['source'])
+            match type:
+                case 'execute':
+                    self.execute(msg['key'], msg['source'])
 
-            case 'close':
-                self.close(msg['key'])
+                case 'close':
+                    self.close(msg['key'])
+
+                case _:
+                    log.warning(_('Unrecognized message type: "%s"'), type)
+
+        except Exception:
+            log.warning(_('Invalid message: %r'), msg)
 
     def execute(self, key: str, source: str) -> None:
         reset_reloads_state()
