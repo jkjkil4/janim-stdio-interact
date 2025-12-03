@@ -1,13 +1,20 @@
 
-import json
+
+import inspect
+import os
 import sys
+import traceback
+import types
 from argparse import Namespace
 
+from janim.anims.timeline import BuiltTimeline, Timeline
 from janim.cli import get_all_timelines_from_module
+from janim.exception import ExitException
 from janim.gui.application import Application
+from janim.utils.file_ops import STDIN_FILENAME
 from janim.utils.reload import reset_reloads_state
-from PySide6.QtCore import QThread, Signal
 
+from janim_stdio_interact.listener import StdinListener
 from janim_stdio_interact.logger import log
 from janim_stdio_interact.viewer import StdioAnimViewer
 
@@ -17,6 +24,9 @@ _ = lambda x: x     # noqa: E731
 
 def host(args: Namespace) -> None:
     log.info(_('Hosting JAnim GUI and interacting via stdio ...'))
+
+    # 兼容相对于当前工作目录的导入
+    sys.path.insert(0, os.getcwd())
 
     app = Application()
     app.setQuitOnLastWindowClosed(False)
@@ -54,46 +64,126 @@ class AnimViewerManager:
 
         match type:
             case 'execute':
-                self.execute(msg['name'], msg['source'])
+                self.execute(msg['key'], msg['source'])
 
             case 'close':
-                self.close(msg['name'])
+                self.close(msg['key'])
 
-    def execute(self, name: str, source: str) -> None:
+    def execute(self, key: str, source: str) -> None:
         reset_reloads_state()
+
+        viewer = self.viewers.get(key, None)
+
+        # 创建 module / 复用已有 module
+        if viewer is None:
+            module_name = f'__janim_stdio_i_{key}__'
+            module = types.ModuleType(module_name)
+            module.__file__ = STDIN_FILENAME
+
+            sys.modules[module_name] = module
+        else:
+            module = inspect.getmodule(viewer.built.timeline)
+
+        # 编译代码
+        code = compile(source, STDIN_FILENAME, 'exec')
+        exec(code, module.__dict__)
+
         get_all_timelines_from_module.cache_clear()
-        # TODO
+        timelines = get_all_timelines_from_module(module)
+        if not timelines:
+            StdioAnimViewer.write_viewer_message(
+                key,
+                'execute',
+                janim={
+                    'type': 'error',
+                    'reason': 'no-timeline'
+                }
+            )
+            return
 
-    def close(self, name: str) -> None:
-        # TODO
-        pass
+        # 尝试找到和原来同名的 Timeline，如果没有就用列表中的第一个
+        if viewer is None:
+            timeline_cls = timelines[0]
+        else:
+            timeline_cls = getattr(module, viewer.built.timeline.__class__.__name__, None)
+            if timeline_cls is None or not isinstance(timeline_cls, type) or not issubclass(timeline_cls, Timeline):
+                timeline_cls = timelines[0]
+        timeline_name = timeline_cls.__name__
 
-
-class StdinListener(QThread):
-    message_received = Signal(dict)
-    exited = Signal()
-
-    def run(self) -> None:
-        log.debug('StdinListener started')
-
+        # 构建
         try:
-            while True:
-                line = sys.stdin.readline()
-                if not line:
-                    log.debug('StdinListener EOF reached, exiting ...')
-                    break
-                line = line.strip()
-                if not line:
-                    continue
+            # TODO: args
+            built: BuiltTimeline = timeline_cls().build()
+        except Exception as e:
+            if not isinstance(e, ExitException):
+                traceback.print_exc()
+            StdioAnimViewer.write_viewer_message(
+                key,
+                'execute',
+                janim={
+                    'type': 'error',
+                    'reason': 'build-failed'
+                }
+            )
+            return
 
-                try:
-                    msg = json.loads(line)
-                except Exception:
-                    log.error(_('Failed to parse JSON from stdin: %r'), line)
-                    continue
+        # 创建 viewer / 更新 viewer
+        if viewer is None:
+            log.debug('Creating viewer "%s"', key)
 
-                self.message_received.emit(msg)
+            # TODO: args
+            available_timeline_names = [timeline.__name__ for timeline in timelines]
+            viewer = StdioAnimViewer(self,
+                                     key,
+                                     built,
+                                     available_timeline_names=available_timeline_names)
+            self.viewers[key] = viewer
+            viewer.show()
 
-        finally:
-            log.debug('StdinListener exited')
-            self.exited.emit()
+        else:
+            log.debug('Reusing viewer "%s"', key)
+
+            viewer.name_edit.blockSignals(True)
+            viewer.name_edit.setText(timeline_name)
+            viewer.name_edit.blockSignals(False)
+            viewer.set_built_and_handle_states(module, built, timeline_cls.__name__)
+
+        StdioAnimViewer.write_viewer_message(
+            key,
+            'execute',
+            janim={
+                'type': 'success'
+            }
+        )
+
+    def close(self, key: str) -> None:
+        viewer = self.viewers.get(key, None)
+
+        if viewer is None:
+            StdioAnimViewer.write_viewer_message(
+                key,
+                'close',
+                janim={
+                    'type': 'error',
+                    'reason': 'not-found'
+                }
+            )
+            return
+
+        viewer.close()
+        self.remove(key)
+        StdioAnimViewer.write_viewer_message(
+            key,
+            'close',
+            janim={
+                'type': 'success'
+            }
+        )
+
+    def remove(self, key: str) -> None:
+        viewer = self.viewers.pop(key)
+        module = inspect.getmodule(viewer.built.timeline)
+        module_name = module.__name__
+        del sys.modules[module_name]
+
+        log.debug('Removed viewer "%s" and related resources', key)
