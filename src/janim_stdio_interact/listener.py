@@ -3,10 +3,10 @@ import sys
 
 from PySide6.QtCore import QThread, Signal
 
+from janim_stdio_interact.locale.i18n import get_local_strings
 from janim_stdio_interact.logger import log
 
-# TODO: i18n
-_ = lambda x: x     # noqa: E731
+_ = get_local_strings('listener')
 
 
 class StdinListener(QThread):

@@ -1,17 +1,29 @@
 
 from argparse import ArgumentParser, Namespace
 
-# TODO: i18n
-_ = lambda x: x     # noqa: E731
+from janim_stdio_interact.locale.i18n import get_local_strings, set_lang
+
+_ = get_local_strings('__main__')
 
 
 def main() -> None:
-    # TODO: initial_parser for i18n
+    global _
 
-    parser = ArgumentParser(description=_('A library for interacting with JAnim GUI via standard input/output.'))
+    initial_parser = ArgumentParser(add_help=False)
+    initial_parser.add_argument('--lang')
+    initial_args = initial_parser.parse_known_args()[0]
+
+    if initial_args.lang:
+        set_lang(initial_args.lang)
+        _ = get_local_strings('__main__')
+
+    parser = ArgumentParser(description=_('A utility library for interacting with JAnim GUI via standard input/output'))
     parser.set_defaults(func=None)
 
-    # TODO: add --lang argument
+    parser.add_argument(
+        '--lang',
+        help=_('Language code, e.g., en, zh_CN')
+    )
     parser.add_argument(
         '-v', '--version',
         action='store_true'
