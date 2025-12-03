@@ -1,5 +1,4 @@
-.vscode
-/test_code
+/.vscode
 
 # Python-generated files
 __pycache__/
