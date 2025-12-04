@@ -42,7 +42,7 @@ class StdioAnimViewer(AnimViewer):
         json.dump(
             {
                 'type': 'viewer-msg',
-                'viewer': key,
+                'key': key,
                 'from': from_scope,
                 **msg
             },

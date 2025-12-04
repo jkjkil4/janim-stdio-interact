@@ -74,7 +74,7 @@ class AnimViewerManager:
                     log.warning(_('Unrecognized message type: "%s"'), type)
 
         except Exception:
-            log.warning(_('Invalid message: %r'), msg)
+            log.exception(_('Error occurred while processing message %r'), msg)
 
     def execute(self, key: str, source: str) -> None:
         reset_reloads_state()
@@ -178,7 +178,7 @@ class AnimViewerManager:
             return
 
         viewer.close()
-        self.remove(key)
+        # self.remove(key)  # viewer 的 closeEvent 会完成这件事
         StdioAnimViewer.write_viewer_message(
             key,
             'close',
