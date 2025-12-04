@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-03 15:32+0800\n"
-"PO-Revision-Date: 2025-12-03 15:33+0800\n"
+"POT-Creation-Date: 2025-12-04 14:50+0800\n"
+"PO-Revision-Date: 2025-12-04 14:52+0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: zh_CN\n"
@@ -30,6 +30,10 @@ msgstr "语言代码，例如 en、zh_CN"
 msgid "Set the logging level (default: INFO)"
 msgstr "设置日志级别（默认：INFO）"
 
-#: src\janim_stdio_i\__main__.py:38
+#: src\janim_stdio_i\__main__.py:39
+msgid "Set the logging level for JAnim (default: INFO)"
+msgstr "设置 JAnim 的日志级别（默认：INFO）"
+
+#: src\janim_stdio_i\__main__.py:43
 msgid "Host JAnim GUI and interact via stdio"
 msgstr "托管 JAnim GUI 并通过 stdio 交互"

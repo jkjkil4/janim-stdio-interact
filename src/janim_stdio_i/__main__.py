@@ -33,6 +33,11 @@ def main() -> None:
         type=str.upper,
         help=_('Set the logging level (default: INFO)')
     )
+    parser.add_argument(
+        '--janim_loglevel', default='INFO', choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'],
+        type=str.upper,
+        help=_('Set the logging level for JAnim (default: INFO)')
+    )
 
     sp = parser.add_subparsers()
     host_parser(sp.add_parser('host', help=_('Host JAnim GUI and interact via stdio')))
@@ -48,8 +53,11 @@ def main() -> None:
             parser.print_help()
         return
 
-    from janim.logger import log
+    from janim_stdio_i.logger import log
     log.setLevel(args.loglevel)
+
+    import janim.logger
+    janim.logger.log.setLevel(args.janim_loglevel)
 
     args.func(args)
 

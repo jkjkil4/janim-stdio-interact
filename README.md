@@ -1,3 +1,9 @@
 # JAnim Stdio Interact
 
-A utility library for interacting with JAnim GUI via standard input/output
+<div align="center">
+
+**&gt; English &lt;** | [简体中文](README_zh_CN.md)
+
+</div>
+
+A utility library for interacting with JAnim GUI and managing windows via standard input/output

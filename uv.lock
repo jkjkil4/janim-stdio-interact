@@ -156,14 +156,13 @@ gui = [
 
 [[package]]
 name = "janim-stdio-interact"
-version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "janim", extra = ["gui"] },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "janim", extras = ["gui"], specifier = ">=3.10.2" }]
+requires-dist = [{ name = "janim", extras = ["gui"] }]
 
 [[package]]
 name = "markdown-it-py"
