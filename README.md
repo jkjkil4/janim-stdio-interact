@@ -90,15 +90,15 @@ In addition to compiling and building Timelines via `stdin`, information generat
 ### `stdout`
 
 ```json
-{"type": "viewer-msg", "key": ..., "from": ..., "janim": ...}
+{"type": "viewer-msg", "key": "...", "from": "...", "janim": { ... }}
 ```
 
 | Field | Type | Description |
 | :--- | :--- | :--- |
-| `type` | `string` | Fixed as `"viewer-msg"`, identifying the message category. |
-| `key` | `string` | Corresponds to the identifier `key` used during creation. |
-| `from` | `string` | Sender source. Possible values: `"execute"`, `"close"`, `"gui"`. |
-| `janim` | `object` | The specific event payload, containing the event type and data. |
+| `type` | `string` | Fixed as `"viewer-msg"`, identifying the message category |
+| `key` | `string` | Corresponds to the identifier `key` used during creation |
+| `from` | `string` | Sender source. Possible values: `"execute"`, `"close"`, `"gui"` |
+| `janim` | `object` | The specific event payload, containing the event type and data |
 
 When `"from": "execute"`, it represents the result of the `execute` command sent to `stdin`:
 

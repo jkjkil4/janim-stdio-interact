@@ -90,7 +90,7 @@ janim-stdio-i host
 ### `stdout`
 
 ```json
-{"type": "viewer-msg", "key": ..., "from": ..., "janim": ...}
+{"type": "viewer-msg", "key": "...", "from": "...", "janim": { ... }}
 ```
 
 | 字段 | 类型 | 说明 |
