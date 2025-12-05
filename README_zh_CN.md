@@ -1,5 +1,8 @@
 # JAnim Stdio Interact
 
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://choosealicense.com/licenses/mit/)
+[![PyPI Latest Release](https://img.shields.io/pypi/v/janim-stdio-interact.svg?style=flat&logo=pypi)](https://pypi.org/project/janim-stdio-interact/)
+
 <div align="center">
 
 [English](README.md) | **&gt;简体中文&lt;**
