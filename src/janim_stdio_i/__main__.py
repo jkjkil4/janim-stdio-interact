@@ -69,3 +69,7 @@ def host_parser(parser: ArgumentParser) -> None:
 def host(args: Namespace) -> None:
     from janim_stdio_i.cli import host
     host(args)
+
+
+if __name__ == '__main__':
+    main()
