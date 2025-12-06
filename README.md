@@ -105,6 +105,12 @@ In addition to compiling and building Timelines via `stdin`, information generat
 
 When `"from": "execute"`, it represents the result of the `execute` command sent to `stdin`:
 
+-   When source code compilation fails, the payload is
+
+    ```json
+    "janim": {"type": "error", "reason": "compile-failed"}
+    ```
+
 -   When the source code contains no usable Timeline, the payload is:
 
     ```json

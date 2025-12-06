@@ -93,7 +93,20 @@ class AnimViewerManager:
 
         # 编译代码
         code = compile(source, STDIN_FILENAME, 'exec')
-        exec(code, module.__dict__)
+        try:
+            exec(code, module.__dict__)
+        except Exception as e:
+            if not isinstance(e, ExitException):
+                traceback.print_exc()
+            StdioAnimViewer.write_viewer_message(
+                key,
+                'execute',
+                janim={
+                    'type': 'error',
+                    'reason': 'compile-failed'
+                }
+            )
+            return
 
         get_all_timelines_from_module.cache_clear()
         timelines = get_all_timelines_from_module(module)

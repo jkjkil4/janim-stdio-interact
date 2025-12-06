@@ -105,6 +105,12 @@ janim-stdio-i host
 
 当 `"from": "execute"` 时，表示 `stdin` 中 `execute` 命令的执行结果：
 
+-   当源代码编译失败时，载荷是
+
+    ```json
+    "janim": {"type": "error", "reason": "compile-filaed"}
+    ```
+
 -   当源代码中没有可使用的 Timeline 时，载荷是
 
     ```json
