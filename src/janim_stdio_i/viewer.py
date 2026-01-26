@@ -23,6 +23,8 @@ class StdioAnimViewer(AnimViewer):
         self.key = key
         super().__init__(built, interact=False, **kwargs)
 
+        self.action_stay_on_top.setChecked(False)
+
         self.write_viewer_message(
             key,
             'gui',
