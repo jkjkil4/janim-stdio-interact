@@ -4,8 +4,8 @@ import json
 import sys
 from typing import TYPE_CHECKING
 
-from janim.timeline import BuiltTimeline
 from janim.gui.anim_viewer import AnimViewer
+from janim.timeline import BuiltTimeline
 
 if TYPE_CHECKING:
     from janim_stdio_i.cli import AnimViewerManager

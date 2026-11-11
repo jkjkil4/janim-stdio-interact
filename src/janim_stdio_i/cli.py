@@ -5,10 +5,10 @@ import traceback
 import types
 from argparse import Namespace
 
-from janim.anims.timeline import BuiltTimeline, Timeline
-from janim.cli import get_all_timelines_from_module
+from janim.cli.utils.extract_timeline import get_all_timelines_from_module
 from janim.exception import ExitException
 from janim.gui.application import Application
+from janim.timeline import BuiltTimeline, Timeline
 from janim.utils.file_ops import STDIN_FILENAME
 from janim.utils.reload import reset_reloads_state
 
@@ -101,7 +101,6 @@ class AnimViewerManager:
             )
             return
 
-        get_all_timelines_from_module.cache_clear()
         timelines = get_all_timelines_from_module(module)
         if not timelines:
             StdioAnimViewer.write_viewer_message(
