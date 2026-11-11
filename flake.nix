@@ -31,6 +31,9 @@
               (pkgs.writeShellScriptBin "janim" ''
                 exec uv run janim "$@"
               '')
+              (pkgs.writeShellScriptBin "janim-stdio-i" ''
+                exec uv run janim-stdio-i "$@"
+              '')
             ] ++ extraPackages;
 
             env = {
