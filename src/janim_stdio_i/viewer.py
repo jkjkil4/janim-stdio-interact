@@ -4,7 +4,7 @@ import json
 import sys
 from typing import TYPE_CHECKING
 
-from janim.anims.timeline import BuiltTimeline
+from janim.timeline import BuiltTimeline
 from janim.gui.anim_viewer import AnimViewer
 
 if TYPE_CHECKING:
@@ -17,7 +17,7 @@ class StdioAnimViewer(AnimViewer):
         manager: AnimViewerManager,
         key: str,
         built: BuiltTimeline,
-        **kwargs
+        **kwargs,
     ):
         self.manager = manager
         self.key = key
@@ -29,8 +29,8 @@ class StdioAnimViewer(AnimViewer):
             key,
             'gui',
             janim={
-                'type': 'created'
-            }
+                'type': 'created',
+            },
         )
 
     def has_connection(self) -> bool:
@@ -46,10 +46,10 @@ class StdioAnimViewer(AnimViewer):
                 'type': 'viewer-msg',
                 'key': key,
                 'from': from_scope,
-                **msg
+                **msg,
             },
             fp=sys.stdout,
-            ensure_ascii=False
+            ensure_ascii=False,
         )
         sys.stdout.write('\n')
         sys.stdout.flush()

@@ -1,5 +1,3 @@
-
-
 import inspect
 import os
 import sys
@@ -99,12 +97,7 @@ class AnimViewerManager:
             if not isinstance(e, ExitException):
                 traceback.print_exc()
             StdioAnimViewer.write_viewer_message(
-                key,
-                'execute',
-                janim={
-                    'type': 'error',
-                    'reason': 'compile-failed'
-                }
+                key, 'execute', janim={'type': 'error', 'reason': 'compile-failed'}
             )
             return
 
@@ -112,12 +105,7 @@ class AnimViewerManager:
         timelines = get_all_timelines_from_module(module)
         if not timelines:
             StdioAnimViewer.write_viewer_message(
-                key,
-                'execute',
-                janim={
-                    'type': 'error',
-                    'reason': 'no-timeline'
-                }
+                key, 'execute', janim={'type': 'error', 'reason': 'no-timeline'}
             )
             return
 
@@ -126,7 +114,11 @@ class AnimViewerManager:
             timeline_cls = timelines[0]
         else:
             timeline_cls = getattr(module, viewer.built.timeline.__class__.__name__, None)
-            if timeline_cls is None or not isinstance(timeline_cls, type) or not issubclass(timeline_cls, Timeline):
+            if (
+                timeline_cls is None
+                or not isinstance(timeline_cls, type)
+                or not issubclass(timeline_cls, Timeline)
+            ):
                 timeline_cls = timelines[0]
         timeline_name = timeline_cls.__name__
 
@@ -142,8 +134,8 @@ class AnimViewerManager:
                 'execute',
                 janim={
                     'type': 'error',
-                    'reason': 'build-failed'
-                }
+                    'reason': 'build-failed',
+                },
             )
             return
 
@@ -153,10 +145,9 @@ class AnimViewerManager:
 
             # TODO: args
             available_timeline_names = [timeline.__name__ for timeline in timelines]
-            viewer = StdioAnimViewer(self,
-                                     key,
-                                     built,
-                                     available_timeline_names=available_timeline_names)
+            viewer = StdioAnimViewer(
+                self, key, built, available_timeline_names=available_timeline_names
+            )
             self.viewers[key] = viewer
             viewer.show()
 
@@ -172,8 +163,8 @@ class AnimViewerManager:
             key,
             'execute',
             janim={
-                'type': 'success'
-            }
+                'type': 'success',
+            },
         )
 
     def close(self, key: str) -> None:
@@ -185,8 +176,8 @@ class AnimViewerManager:
                 'close',
                 janim={
                     'type': 'error',
-                    'reason': 'not-found'
-                }
+                    'reason': 'not-found',
+                },
             )
             return
 
@@ -196,8 +187,8 @@ class AnimViewerManager:
             key,
             'close',
             janim={
-                'type': 'success'
-            }
+                'type': 'success',
+            },
         )
 
     def remove(self, key: str) -> None:

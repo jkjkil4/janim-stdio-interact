@@ -33,3 +33,13 @@ Source = "https://github.com/jkjkil4/janim-stdio-interact"
 
 [project.scripts]
 janim-stdio-i = "janim_stdio_i.__main__:main"
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.format]
+quote-style = "single"
